@@ -5,6 +5,6 @@ import tech.patricknicezi.Spring.Store.adapter.datasources.services.model.AdminM
 
 import java.util.Optional;
 
-public interface AdminPostgresRepository extends JpaRepository<AdminModel, Long>{
+public interface AdminPostgresRepository extends JpaRepository<AdminModel, String>{
     Optional<AdminModel> findByEmail(String email);
 }

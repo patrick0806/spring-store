@@ -10,16 +10,23 @@ import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.dtos.admin.Ad
 import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.dtos.admin.CreateAdminRequest;
 import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.mapper.AdminDTOMapper;
 import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.openapi.AdminOpenAPI;
+import tech.patricknicezi.Spring.Store.internal.interactors.admin.CreateAdminUseCase;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController implements AdminOpenAPI {
 
+    private final CreateAdminUseCase createAdminUseCase;
+
+    public AdminController(CreateAdminUseCase createAdminUseCase) {
+        this.createAdminUseCase = createAdminUseCase;
+    }
+
     @Override
     @PostMapping
     public ResponseEntity<AdminResponse> createAdmin(@RequestBody @Valid CreateAdminRequest createAdminRequest) {
-        final var newAdminData = AdminDTOMapper.INSTANCE.toEntity(createAdminRequest);
-        System.out.println(newAdminData);
-        return null;
+        final var newAdmin = AdminDTOMapper.INSTANCE.toEntity(createAdminRequest);
+        final var savedAdmin = createAdminUseCase.execute(newAdmin);
+        return ResponseEntity.status(201).body(AdminDTOMapper.INSTANCE.toResponse(savedAdmin));
     }
 }

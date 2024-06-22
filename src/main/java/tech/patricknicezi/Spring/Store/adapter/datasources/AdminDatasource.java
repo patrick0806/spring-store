@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Component
 public class AdminDatasource implements AdminRepository {
-    private AdminPostgresRepository adminPostgresRepository;
+    private final AdminPostgresRepository adminPostgresRepository;
 
     public AdminDatasource(AdminPostgresRepository adminPostgresRepository) {
         this.adminPostgresRepository = adminPostgresRepository;

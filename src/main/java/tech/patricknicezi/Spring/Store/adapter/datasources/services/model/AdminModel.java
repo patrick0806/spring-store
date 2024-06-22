@@ -2,9 +2,11 @@ package tech.patricknicezi.Spring.Store.adapter.datasources.services.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GeneratedColumn;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @Table(name = "admins")
 @Entity(name = "AdminPostgres")
@@ -16,8 +18,8 @@ import java.time.OffsetDateTime;
 public class AdminModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String name;
     private String email;
     private String password;
@@ -29,9 +31,11 @@ public class AdminModel {
     private Boolean isActive;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private OffsetDateTime createdAt;
 
     @Column(name = "updated_at")
+    @UpdateTimestamp
     private OffsetDateTime updatedAt;
 
 

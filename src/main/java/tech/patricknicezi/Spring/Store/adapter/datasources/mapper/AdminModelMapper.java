@@ -14,6 +14,7 @@ import java.util.Objects;
 public interface AdminModelMapper {
     AdminModelMapper INSTANCE = Mappers.getMapper(AdminModelMapper.class);
 
+
     AdminModel toModel(Admin admin);
     Admin toEntity(AdminModel adminModel);
 
@@ -31,5 +32,13 @@ public interface AdminModelMapper {
         }
 
         return DateUtils.parseStringDateTimeToOffsetDateTime(string);
+    }
+
+    default String parseUUIDToString(java.util.UUID uuid){
+        if(Objects.isNull(uuid)){
+            return null;
+        }
+
+        return uuid.toString();
     }
 }

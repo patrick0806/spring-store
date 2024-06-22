@@ -6,6 +6,8 @@ import tech.patricknicezi.Spring.Store.bootstrap.exceptions.AlreadyExistsExcepti
 import tech.patricknicezi.Spring.Store.internal.entities.Admin;
 import tech.patricknicezi.Spring.Store.internal.repositories.AdminRepository;
 
+import java.time.OffsetDateTime;
+
 @Service
 public class CreateAdminUseCase {
     private  final AdminRepository adminRepository;
@@ -23,6 +25,7 @@ public class CreateAdminUseCase {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(admin.getPassword());
         admin.setPassword(encryptedPassword);
+        admin.setIsActive(true);
         return adminRepository.save(admin);
     }
 }

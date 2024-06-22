@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class Admin implements UserDetails {
-    private Long id;
+    private String id;
     private String name;
     private String email;
     private String password;
