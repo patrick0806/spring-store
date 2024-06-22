@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tech.patricknicezi.Spring.Store.bootstrap.exceptions.AlreadyExistsException;
 import tech.patricknicezi.Spring.Store.internal.entities.Admin;
 import tech.patricknicezi.Spring.Store.internal.repositories.AdminRepository;
+import tech.patricknicezi.Spring.Store.util.StringUtils;
 
 import java.time.OffsetDateTime;
 
@@ -25,6 +26,7 @@ public class CreateAdminUseCase {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(admin.getPassword());
         admin.setPassword(encryptedPassword);
+        admin.setPhone(StringUtils.onlyNumbers(admin.getPhone()));
         admin.setIsActive(true);
         return adminRepository.save(admin);
     }

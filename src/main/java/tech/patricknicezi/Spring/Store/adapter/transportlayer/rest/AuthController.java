@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.dtos.auth.LoginRequest;
+import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.dtos.auth.LoginResponse;
 import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.openapi.AuthOpenApi;
 import tech.patricknicezi.Spring.Store.internal.interactors.auth.LoginUseCase;
 
@@ -23,10 +24,10 @@ public class AuthController implements AuthOpenApi {
 
     @Override
     @PostMapping("/login")
-    public ResponseEntity<String> authenticate(@RequestBody @Valid LoginRequest loginRequest) {
-        var result = loginUseCase.execute(loginRequest.email(), loginRequest.password());
-        System.out.println(result);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody @Valid LoginRequest loginRequest) {
+        var accessToken = loginUseCase.execute(loginRequest.email(), loginRequest.password());
+
+        return ResponseEntity.ok(new LoginResponse(accessToken));
     }
 
 }

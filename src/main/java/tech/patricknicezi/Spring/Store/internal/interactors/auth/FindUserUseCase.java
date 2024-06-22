@@ -21,7 +21,7 @@ public class FindUserUseCase implements UserDetailsService {
         if(adminUser.isPresent()){
             return adminUser.get();
         }
-
+        //TODO add customer login
         throw new UsernameNotFoundException("User not found");
 
     }
