@@ -21,7 +21,7 @@ public class CreateAdminUseCase {
         final var adminByEmail = adminRepository.findByEmail(admin.getEmail());
 
         if(adminByEmail.isPresent()){
-            throw new AlreadyExistsException("Email already in use");
+            throw new AlreadyExistsException("A user with this email already exists");
         }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(admin.getPassword());

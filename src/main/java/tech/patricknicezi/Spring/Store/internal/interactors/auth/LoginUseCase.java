@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import tech.patricknicezi.Spring.Store.bootstrap.exceptions.GenerateTokenException;
 
 import java.time.Instant;
 
@@ -44,7 +45,7 @@ public class LoginUseCase {
                     .withExpiresAt(generateExpirationTime())
                     .sign(Algorithm.HMAC256(secret));
         } catch (JWTCreationException exception) {
-            throw new RuntimeException("Error creating token", exception);//TODO create custom exception
+            throw new GenerateTokenException("Error creating token", exception);
         }
     }
 
