@@ -9,6 +9,7 @@ import tech.patricknicezi.Spring.Store.util.DateUtils;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 @Mapper
 public interface CustomerModelMapper {
@@ -34,7 +35,7 @@ public interface CustomerModelMapper {
         return DateUtils.parseStringDateTimeToOffsetDateTime(string);
     }
 
-    default String parseUUIDToString(java.util.UUID uuid){
+    default String parseUUIDToString(UUID uuid){
         if(Objects.isNull(uuid)){
             return null;
         }
