@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.dtos.product.ProductCategoryRequest;
 import tech.patricknicezi.Spring.Store.adapter.transportlayer.rest.dtos.product.ProductCategoryResponse;
-import tech.patricknicezi.Spring.Store.internal.entities.ProductCategory;
+
 
 @Tag(name = "Product")
 public interface ProductOpenAPI {
@@ -21,5 +21,5 @@ public interface ProductOpenAPI {
                     content = { @Content(schema = @Schema(implementation = ProductCategoryResponse.class), mediaType = "application/json") }
             ),
     })
-    ResponseEntity<ProductCategory> createProductCategory(ProductCategoryRequest productCategory);
+    ResponseEntity<ProductCategoryResponse> createProductCategory(ProductCategoryRequest productCategory);
 }

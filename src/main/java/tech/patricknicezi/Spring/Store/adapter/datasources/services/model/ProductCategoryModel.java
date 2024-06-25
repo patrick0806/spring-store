@@ -3,6 +3,8 @@ package tech.patricknicezi.Spring.Store.adapter.datasources.services.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Table(name = "product_categories")
 @Entity(name = "ProductCategoryPostgres")
 @Data
@@ -13,6 +15,6 @@ import lombok.*;
 public class ProductCategoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
     private String description;
 }

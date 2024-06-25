@@ -40,7 +40,7 @@ public class LoginUseCase {
 
     private String generateToken(UserDetails user){
         try{
-            return JWT.create().withIssuer("Spring Store")
+            return JWT.create().withIssuer("spring-store")
                     .withSubject(user.getUsername())
                     .withExpiresAt(generateExpirationTime())
                     .sign(Algorithm.HMAC256(secret));
